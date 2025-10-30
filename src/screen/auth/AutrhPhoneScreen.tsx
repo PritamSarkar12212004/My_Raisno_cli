@@ -21,12 +21,33 @@ const AuthScreen = () => {
         phone: '',
     })
 
-    const handleInputChange = (field: any, value: any) => {
-        setFormData((prev) => ({
-            ...prev,
-            [field]: value,
-        }))
-    }
+    const handleInputChange = (field: string, value: string) => {
+        if (field === 'phone') {
+            // Remove any non-numeric characters
+            let cleaned = value.replace(/[^0-9]/g, '');
+
+            // Limit to 10 digits
+            if (cleaned.length > 10) {
+                cleaned = cleaned.slice(0, 10);
+            }
+
+            // Optional: Prevent numbers starting with 0
+            if (cleaned.startsWith('0')) {
+                cleaned = cleaned.replace(/^0+/, '');
+            }
+
+            setFormData((prev) => ({
+                ...prev,
+                [field]: cleaned,
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [field]: value,
+            }));
+        }
+    };
+
 
     const handleLogin = () => {
         if (!formData.phone) {
@@ -34,7 +55,6 @@ const AuthScreen = () => {
             return
         }
         console.log('Phone Login:', formData.phone)
-        // Add API login logic here
     }
 
     return (
