@@ -1,0 +1,44 @@
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, { useState } from 'react'
+import ColorConst from '../../constants/color/ColorConst'
+import AnimationLotti from '../../components/global/Animation/AnimationLotti'
+import AnimationConst from '../../constants/animation/AnimationConst'
+import PageDataSave from '../../functions/data/PageDataSave'
+import StorageToken from '../../constants/token/StorageToken'
+import FullPageReloader from '../../functions/page/FullPageReloader'
+
+const SplashScreen = () => {
+    const [loading, setLoading] = useState<Boolean>()
+    const handlePageFunc = async () => {
+        setLoading(true)
+        await PageDataSave({
+            key: StorageToken.SPLASH_TOKEN.DATA
+        })
+        FullPageReloader()
+        setLoading(false)
+    }
+    return (
+        <View className='flex-1 w-full bg-red-500 flex items-center justify-end py-20' style={{
+            backgroundColor: ColorConst.ROOT_COLOR
+        }}>
+            <AnimationLotti height={460} width={460} path={AnimationConst.Splash} />
+            <View className='w-full flex px-16 gap-3 items-center justify-center'>
+                <Text className='text-gray-400 text-xl font-bold text-center'>Wellcome To
+                    <Text className='text-[#B44F7F] text-center'> My Raisoni </Text>
+                    App</Text>
+                <Text className='text-gray-400 text-sm text-wrap text-center tracking-widest leading-5'>
+                    My Raisoni App Provide Best Expreance Access the Cyber Vidya Portal
+                </Text>
+            </View>
+            <View className='w-full flex items-center justify-center px-8'>
+                <TouchableOpacity activeOpacity={0.8} className='w-full h-14 bg-zinc-900/90 mt-20 rounded-3xl flex items-center justify-center' onPress={() => handlePageFunc()}>
+                    {
+                        loading ? <ActivityIndicator color={ColorConst.ROOT_COLOR} size={"large"} /> : <Text className='text-lg text-gray-400  font-semibold'>Continue</Text>
+                    }
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
+}
+
+export default SplashScreen
