@@ -10,7 +10,26 @@ interface ContextinterFace {
     }
     setReloader: any,
     initialRoute: string | null | any,
-    setInitialRoute: any
+    setInitialRoute: any,
+    univarsalTokenData: null | string | null | {
+        Token: null,
+        Id: null
+    }
+    setUnivarsalTokenData: any
+    userData: {
+        attendanceData: any | null;
+        profileImage: any | null;
+        castReliganData: any | null;
+        corseData: any | null;
+        fatherDetilesData: any | null;
+        idDetilesData: any | null;
+        personlInformationData: any | null;
+        studentAddressData: any | null;
+        userDetilesData: any | null;
+    },
+    setUserDta: any,
+    modalProvider: boolean,
+    setModalProvider: any
 }
 
 const Context = createContext<ContextinterFace | undefined>(undefined);
@@ -25,7 +44,33 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         authPageReloader: false
     })
     const [initialRoute, setInitialRoute] = useState<string | null>(null)
+    const [univarsalTokenData, setUnivarsalTokenData] = useState<null | string | null | any>({
+        Token: null,
+        Id: null
+    })
 
+    const [userData, setUserDta] = useState<any | null | {
+        attendanceData: any | null;
+        profileImage: any | null;
+        castReliganData: any | null;
+        corseData: any | null;
+        fatherDetilesData: any | null;
+        idDetilesData: any | null;
+        personlInformationData: any | null;
+        studentAddressData: any | null;
+        userDetilesData: any | null;
+    }>({
+        attendanceData: null,
+        profileImage: null,
+        castReliganData: null,
+        corseData: null,
+        fatherDetilesData: null,
+        idDetilesData: null,
+        personlInformationData: null,
+        studentAddressData: null,
+        userDetilesData: null
+    })
+    const [modalProvider, setModalProvider] = useState<boolean>(false)
 
     return (
         <Context.Provider
@@ -33,7 +78,13 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
                 reloader,
                 setReloader,
                 initialRoute,
-                setInitialRoute
+                setInitialRoute,
+                univarsalTokenData,
+                setUnivarsalTokenData,
+                userData,
+                setUserDta,
+                modalProvider,
+                setModalProvider
             }}
         >
             {children}

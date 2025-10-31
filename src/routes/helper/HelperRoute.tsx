@@ -16,7 +16,7 @@ const HelperRoute = () => {
     }, [reloader.fullPageReloader])
 
     if (route == null) {
-      return <MainLoader />
+        return <MainLoader />
     }
 
     return (

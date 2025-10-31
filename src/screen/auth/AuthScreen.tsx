@@ -8,24 +8,27 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
+    ActivityIndicator,
 } from 'react-native'
 import React, { useState } from 'react'
 import ColorConst from '../../constants/color/ColorConst'
-import { useNavigation } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import RoutesConst from '../../constants/routes/RoutesConst'
 import FlashMsg from '../../components/global/flash/FlashMsg'
+import useLoginByCretiantial from '../../functions/api/auth/LoginByCretiantial'
+import { userContext } from '../../utils/provider/ContextProvider'
 
 const { width, height } = Dimensions.get('window')
 
 const AuthScreen = () => {
+    const [loading, setLoading] = useState<boolean>(false)
+    const { setUserDta, setUnivarsalTokenData, setModalProvider } = userContext();
     const navigation = useNavigation()
     const [isLoginWithPhone, setIsLoginWithPhone] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
         username: '',
-        phone: '',
         password: '',
-        rememberMe: false,
     })
 
     const handleInputChange = (field: any, value: any) => {
@@ -36,19 +39,25 @@ const AuthScreen = () => {
     }
 
     const handleLogin = () => {
-
-
         if (!formData.username || !formData.password) {
             FlashMsg({
                 message: "Missing Fields",
                 description: "Please fill in both username and password.",
                 type: "danger",
             });
-
             return
+        } else {
+            setLoading(true)
+            useLoginByCretiantial({
+                formData: formData,
+                setLoading: setLoading,
+                setUserDta: setUserDta,
+                setUnivarsalTokenData: setUnivarsalTokenData,
+                mainLoader: setModalProvider,
+                navigation: navigation,
+                CommonActions: CommonActions
+            })
         }
-        console.log('Username Login:', formData.username)
-
     }
 
     return (
@@ -108,7 +117,7 @@ const AuthScreen = () => {
                     <View className="bg-zinc-800/30 rounded-3xl px-4 pt-4 pb-4 mb-9 shadow-xl shadow-black/10">
                         <View className="mb-6">
                             <Text className="text-gray-300 font-semibold mb-4 ml-2 text-lg">
-                                {isLoginWithPhone ? '📱 Phone Number' : 'Username'}
+                                Username
                             </Text>
                             <TextInput
                                 className="w-full h-14 bg-zinc-900/60 rounded-2xl px-6 text-white text-lg border-2 border-zinc-700/50 focus:border-blue-500"
@@ -118,7 +127,7 @@ const AuthScreen = () => {
                                         : 'Enter your username'
                                 }
                                 placeholderTextColor="#6B7280"
-                                value={isLoginWithPhone ? formData.phone : formData.username}
+                                value={formData.username}
                                 onChangeText={(text) =>
                                     isLoginWithPhone
                                         ? handleInputChange('phone', text)
@@ -155,9 +164,12 @@ const AuthScreen = () => {
                     </View>
                     <TouchableOpacity
                         className="w-full h-14 mt-4 bg-zinc-900/90 flex items-center justify-center rounded-full"
-                        onPress={handleLogin}
+                        onPress={() => loading ? null : handleLogin()}
                     >
-                        <Text className="text-white font-bold text-xl">Sign In</Text>
+                        {
+                            loading ? <ActivityIndicator size={"small"} color={"gray"} /> : <Text className="text-white font-bold text-xl">Sign In</Text>
+
+                        }
                     </TouchableOpacity>
                 </View>
             </ScrollView>

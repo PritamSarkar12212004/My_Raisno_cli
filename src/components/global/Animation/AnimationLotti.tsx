@@ -1,7 +1,9 @@
 import React, { useRef } from 'react'
 import LottieView from 'lottie-react-native';
 
-const AnimationLotti = ({ height, width, path, bg }: any) => {
+const AnimationLotti = ({ height, width, path, bg }: {
+    height: any, width: any, path: any, bg: any
+}) => {
     const animation = useRef<LottieView>(null);
 
     return (
