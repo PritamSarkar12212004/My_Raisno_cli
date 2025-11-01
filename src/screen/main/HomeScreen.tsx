@@ -1,13 +1,14 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import MainWraper from '../../layouts/wraper/MainWraper'
+import MainWraper from '../../layouts/wraper/main/MainWraper'
+import DataLoading from '../../components/main/Loading/DataLoading'
 
-const HomeScreen = () => {
+const MainScreen = () => {
     return (
-    <MainWraper>
-        
-    </MainWraper>
+        <MainWraper>
+            <DataLoading />
+        </MainWraper>
+
     )
 }
 
-export default HomeScreen
+export default MainScreen

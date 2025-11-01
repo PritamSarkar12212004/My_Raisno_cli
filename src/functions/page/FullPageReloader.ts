@@ -1,9 +1,13 @@
-import { userContext } from '../../utils/provider/ContextProvider';
-
-const FullPageReloader = async () => {
-  const { setReloader, reloader } = userContext();
-  const reload = reloader.fullPageReloader;
-  setReloader(!reload);
+const FullPageReloader = async ({
+  navigation: navigation,
+  CommonActions: CommonActions,
+}: any) => {
+  navigation.dispatch(
+    CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'auth' }],
+    }),
+  );
 };
 
 export default FullPageReloader;
