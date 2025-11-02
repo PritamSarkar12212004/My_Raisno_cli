@@ -11,7 +11,7 @@ interface ContextinterFace {
     setReloader: any,
     initialRoute: string | null | any,
     setInitialRoute: any,
-    univarsalTokenData: null | string | null | {
+    univarsalTokenData: null | any| {
         Token: null,
         Id: null
     }
@@ -29,7 +29,12 @@ interface ContextinterFace {
     },
     setUserDta: any,
     modalProvider: boolean,
-    setModalProvider: any
+    setModalProvider: any,
+    dataLoading: {
+        loading: boolean,
+        status: boolean
+    },
+    setDataLoading: any
 }
 
 const Context = createContext<ContextinterFace | undefined>(undefined);
@@ -59,18 +64,17 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         personlInformationData: any | null;
         studentAddressData: any | null;
         userDetilesData: any | null;
-    }>({
-        attendanceData: null,
-        profileImage: null,
-        castReliganData: null,
-        corseData: null,
-        fatherDetilesData: null,
-        idDetilesData: null,
-        personlInformationData: null,
-        studentAddressData: null,
-        userDetilesData: null
-    })
+    }>(null)
     const [modalProvider, setModalProvider] = useState<boolean>(false)
+
+    const [dataLoading, setDataLoading] = useState<{
+        loading: boolean,
+        status: boolean
+    }>({
+        loading: true,
+        status: true
+    });
+
 
     return (
         <Context.Provider
@@ -84,7 +88,10 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
                 userData,
                 setUserDta,
                 modalProvider,
-                setModalProvider
+                setModalProvider,
+                dataLoading,
+                setDataLoading
+
             }}
         >
             {children}

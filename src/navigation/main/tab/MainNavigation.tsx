@@ -1,11 +1,12 @@
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TabbarProp from '../../components/main/navigation/TabbarProp';
-import MainScreen from '../../screen/main/HomeScreen';
-import AnalizeScreen from './AnalizeScreen';
-import NotificationScreen from './NotificationScreen';
-import ProfileScreen from './ProfileScreen';
+import TabbarProp from '../../../components/main/navigation/TabbarProp';
+import MainScreen from '../../../screen/main/tab/HomeScreen';
+import AnalizeScreen from '../../../screen/main/tab/AnalizeScreen';
+import NotificationScreen from '../../../screen/main/tab/NotificationScreen';
+import ProfileScreen from '../../../screen/main/tab/ProfileScreen';
+
 const Tab = createBottomTabNavigator();
 
 const MainNavigation = () => {

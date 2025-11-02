@@ -5,11 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import ConfigApp from "./src/main/ConfigApp";
 import { ContextProvider } from "./src/utils/provider/ContextProvider";
+import OrientationLock from "./src/modules/oreantetion/oreantetionLocaker";
 
 const App = () => {
-  
+
   return (
     <Fragment>
+      <OrientationLock />
       <SafeAreaProvider>
         <ContextProvider>
           <NavigationContainer>

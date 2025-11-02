@@ -1,9 +1,9 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AnimationLotti from '../../global/Animation/AnimationLotti'
 import AnimationConst from '../../../constants/animation/AnimationConst'
 
-const DataLoading = () => {
+const DataLoading = ({ status, func, loading }: any) => {
     return (
         <View className='flex-1  flex items-center justify-center px-6'>
             <View className='items-center justify-center mb-8'>
@@ -32,11 +32,18 @@ const DataLoading = () => {
                     </View>
                 ))}
             </View>
-            <View className='bg-blue-50 dark:bg-blue-900/20 p-4 rounded-2xl max-w-md'>
-                <Text className='text-sm text-blue-800 dark:text-blue-200 text-center font-medium'>
-                    💡 Tip: Your data is being processed in real-time for the most accurate insights
-                </Text>
-            </View>
+            {
+                status ? <View className='bg-blue-50 dark:bg-blue-900/20 p-4 rounded-2xl max-w-md'>
+                    <Text className='text-sm text-blue-800 dark:text-blue-200 text-center font-medium'>
+                        💡 Tip: Your data is being processed in real-time for the most accurate insights
+                    </Text>
+                </View> : <TouchableOpacity onPress={() => loading ? null : func()} activeOpacity={0.8} className='w-full h-14 bg-zinc-800/80 flex items-center justify-center'>
+                    <Text className='text-xl font-semibold text-zinc-300'>
+                        retry agiane
+                    </Text>
+                </TouchableOpacity>
+            }
+
         </View>
     )
 }

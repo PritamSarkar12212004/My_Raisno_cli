@@ -15,5 +15,8 @@ const RoutesConst = {
     Analize: 'AnalizeScreen',
     PROFILE: 'ProfileScreen',
   },
+  STACK_SCREEN: {
+    ATTENDANCE: 'attendance',
+  },
 };
 export default RoutesConst;
