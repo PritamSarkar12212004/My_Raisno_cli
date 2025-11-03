@@ -17,6 +17,7 @@ const RoutesConst = {
   },
   STACK_SCREEN: {
     ATTENDANCE: 'attendance',
+    CGPA: 'cgpa',
   },
 };
 export default RoutesConst;

@@ -23,7 +23,7 @@ const MainScreen = () => {
                         <DashCard percentage={userData?.attendanceData.presentPerc} range={["0%", "50%", "100%"]} title={"Attendance"} type={""} navigation={navigation} path={RoutesConst.STACK_SCREEN.ATTENDANCE} />
                         <DashCard percentage={parseFloat(
                             ((parseFloat(userData.corseData.cgpaData) / 10) * 10).toFixed(2)
-                        )} range={["0%", "5%", "10%"]} title={"CGPA"} type={"cgpa"} navigation={navigation} path={RoutesConst.STACK_SCREEN.ATTENDANCE} />
+                        )} range={["0%", "5%", "10%"]} title={"CGPA"} type={"cgpa"} navigation={navigation} path={RoutesConst.STACK_SCREEN.CGPA} />
                     </View>
                 </Fragment>
             )}
