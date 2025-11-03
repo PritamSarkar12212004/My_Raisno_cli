@@ -6,6 +6,7 @@ import DashCard from '../../../components/main/cards/DashCard'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import RoutesConst from '../../../constants/routes/RoutesConst'
+import Carshol from '../../../components/global/carshol/Carshol'
 
 
 const MainScreen = () => {
@@ -20,6 +21,7 @@ const MainScreen = () => {
                         userDetails={userData?.userDetilesData}
                     />
                     <View className='flex-1 flex gap-3 pt-2'>
+                        <Carshol />
                         <DashCard percentage={userData?.attendanceData.presentPerc} range={["0%", "50%", "100%"]} title={"Attendance"} type={""} navigation={navigation} path={RoutesConst.STACK_SCREEN.ATTENDANCE} />
                         <DashCard percentage={parseFloat(
                             ((parseFloat(userData.corseData.cgpaData) / 10) * 10).toFixed(2)
