@@ -50,7 +50,7 @@ const DashCard = ({
     return (
         <TouchableOpacity activeOpacity={0.8} onPress={() => {
             navigatefUNC(path)
-        }} className="w-full bg-gray-800 py-5 px-4 rounded-[20px] shadow-lg">
+        }} className="w-full bg-gray-900/90 py-5 px-4 rounded-[20px] shadow-lg">
             <View className="flex-row justify-between items-center mb-4">
                 <Text className="text-white text-lg font-bold">{title}</Text>
                 <View className="flex-row items-center">
