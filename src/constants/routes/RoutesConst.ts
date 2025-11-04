@@ -20,6 +20,7 @@ const RoutesConst = {
     CGPA: 'cgpa',
     CGPA_DETILES: 'cgpa_detiles',
     EXAM_SCORE: 'exam_score',
+    VIEW_PDF: 'view_pdf',
   },
 };
 export default RoutesConst;

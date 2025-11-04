@@ -5,6 +5,7 @@ import AttendanceScreen from '../../../screen/main/stack/AttendanceScreen';
 import CgpaScreen from '../../../screen/main/stack/cgpa/CgpaScreen';
 import CgpaDetailScreen from '../../../screen/main/stack/cgpa/CgpaDetailScreen';
 import ExamScoreScreen from '../../../screen/main/stack/Receipt/ExamScoreScreen';
+import ViewPdf from '../../../screen/main/stack/Receipt/ViewPdf';
 const Stack = createNativeStackNavigator()
 
 const StackNavigation = () => {
@@ -25,6 +26,9 @@ const StackNavigation = () => {
             <Stack.Screen name={RoutesConst.STACK_SCREEN.EXAM_SCORE} options={{
                 animation: "ios_from_right"
             }} component={ExamScoreScreen} />
+            <Stack.Screen name={RoutesConst.STACK_SCREEN.VIEW_PDF} options={{
+                animation: "ios_from_right"
+            }} component={ViewPdf} />
         </Stack.Navigator>
     )
 }

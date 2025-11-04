@@ -6,6 +6,7 @@ const ApiPath = {
       FETCH_ATTENDANCE: '/attendance',
       FETCH_CGPA: '/examScore',
       FETCH_EXAM_SCORE_DOX: '/download/examOne',
+      DOWNLOAD_EXAM_SCORE_PDF: '/download/exam/maindownload',
     },
   },
 };

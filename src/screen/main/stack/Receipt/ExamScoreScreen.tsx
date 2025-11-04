@@ -6,9 +6,11 @@ import ExamScoreApi from '../../../../functions/api/main/ExamScoreApi'
 import { userContext } from '../../../../utils/provider/ContextProvider'
 import DataLoading from '../../../../components/main/Loading/DataLoading'
 import ScoreCard from '../../../../components/main/cards/ScoreCard'
+import { useNavigation } from '@react-navigation/native'
 
 const ExamScoreScreen = () => {
-  const { univarsalTokenData, userData } = userContext()
+  const { univarsalTokenData, userData, setModalProvider } = userContext()
+  const navigation = useNavigation<any>()
   const [loading, setLoading] = useState<boolean | any | {
     status: boolean,
     load: boolean
@@ -52,7 +54,7 @@ const ExamScoreScreen = () => {
           /> : <View className='flex-1'>
             {
               data?.map((item, index) => {
-                return <ScoreCard key={index} item={item} index={index} />
+                return <ScoreCard key={index} item={item} index={index} token={univarsalTokenData?.Token} setLoading={setModalProvider} navigation={navigation} />
               })
             }
           </View>

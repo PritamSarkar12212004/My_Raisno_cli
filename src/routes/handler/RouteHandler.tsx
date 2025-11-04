@@ -9,7 +9,6 @@ const Stack = createNativeStackNavigator();
 
 
 const RouteHandler = ({ route }: any) => {
-    console.log(route)
     if (!route) {
         return <MainLoader />
     }

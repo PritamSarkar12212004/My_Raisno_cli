@@ -33,7 +33,6 @@ const ExamScoreApi = async ({
       },
     );
     setData(response.data.data);
-    console.log(response.data.data);
     setloading({
       status: true,
       load: false,
