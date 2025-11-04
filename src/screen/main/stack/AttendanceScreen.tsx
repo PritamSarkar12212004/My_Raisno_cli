@@ -56,7 +56,7 @@ const AttendanceScreen = () => {
             setData: setData,
             setloading: setLoading
         })
-    }, [])
+    }, [null])
     return (
         <SubWraper>
             <SubHeader path={path} />

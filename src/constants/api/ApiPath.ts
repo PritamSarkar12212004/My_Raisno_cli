@@ -5,6 +5,7 @@ const ApiPath = {
       FETCH_MAINDATA_PATH: '/main',
       FETCH_ATTENDANCE: '/attendance',
       FETCH_CGPA: '/examScore',
+      FETCH_EXAM_SCORE_DOX: '/download/examOne',
     },
   },
 };
