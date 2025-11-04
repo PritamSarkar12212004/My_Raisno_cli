@@ -2,8 +2,9 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RoutesConst from '../../../constants/routes/RoutesConst';
 import AttendanceScreen from '../../../screen/main/stack/AttendanceScreen';
-import CgpaScreen from '../../../screen/main/stack/CgpaScreen';
-import CgpaDetailScreen from '../../../screen/main/stack/CgpaDetailScreen';
+import CgpaScreen from '../../../screen/main/stack/cgpa/CgpaScreen';
+import CgpaDetailScreen from '../../../screen/main/stack/cgpa/CgpaDetailScreen';
+import ExamScoreScreen from '../../../screen/main/stack/Receipt/ExamScoreScreen';
 const Stack = createNativeStackNavigator()
 
 const StackNavigation = () => {
@@ -21,6 +22,9 @@ const StackNavigation = () => {
             <Stack.Screen name={RoutesConst.STACK_SCREEN.CGPA_DETILES} options={{
                 animation: "ios_from_right"
             }} component={CgpaDetailScreen} />
+            <Stack.Screen name={RoutesConst.STACK_SCREEN.EXAM_SCORE} options={{
+                animation: "ios_from_right"
+            }} component={ExamScoreScreen} />
         </Stack.Navigator>
     )
 }

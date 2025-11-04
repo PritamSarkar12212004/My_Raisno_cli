@@ -19,6 +19,7 @@ const RoutesConst = {
     ATTENDANCE: 'attendance',
     CGPA: 'cgpa',
     CGPA_DETILES: 'cgpa_detiles',
+    EXAM_SCORE: 'exam_score',
   },
 };
 export default RoutesConst;

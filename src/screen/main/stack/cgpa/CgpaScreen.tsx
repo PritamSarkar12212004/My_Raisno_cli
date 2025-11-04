@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import SubHeader from '../../../components/main/Header/SubHeader'
-import SubWraper from '../../../layouts/wraper/main/SubWraper'
 import { useRoute } from '@react-navigation/native'
-import { userContext } from '../../../utils/provider/ContextProvider'
-import DataLoading from '../../../components/main/Loading/DataLoading'
-import CgpaDataApi from '../../../functions/api/main/CgpaDataApi'
-import CgpaCard from '../../../components/main/cards/CgpaCard'
+import SubHeader from '../../../../components/main/Header/SubHeader'
+import { userContext } from '../../../../utils/provider/ContextProvider'
+import CgpaDataApi from '../../../../functions/api/main/CgpaDataApi'
+import SubWraper from '../../../../layouts/wraper/main/SubWraper'
+import DataLoading from '../../../../components/main/Loading/DataLoading'
+import CgpaCard from '../../../../components/main/cards/CgpaCard'
 
 const CgpaScreen = () => {
     const { params } = useRoute()

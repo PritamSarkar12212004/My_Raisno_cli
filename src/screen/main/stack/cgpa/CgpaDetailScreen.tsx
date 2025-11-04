@@ -1,9 +1,10 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import Icon from '../../../components/global/icon/Icon'
-import SubWraper from '../../../layouts/wraper/main/SubWraper'
-import SubHeader from '../../../components/main/Header/SubHeader'
+import SubWraper from '../../../../layouts/wraper/main/SubWraper'
+import SubHeader from '../../../../components/main/Header/SubHeader'
+import Icon from '../../../../components/global/icon/Icon'
+
 
 const CgpaDetailScreen = () => {
     const navigation = useNavigation()
