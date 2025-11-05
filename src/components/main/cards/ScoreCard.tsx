@@ -2,14 +2,17 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Icon from '../../global/icon/Icon'
 import ExamScoreDownloadApi from '../../../functions/api/main/ExamScoreDownloadApi'
-import { PDFDownloader } from '../../../functions/downloader/PdfDownloader'
+import downloadPDF from '../../../functions/FileAction/downloadPDF'
+import sharePDF from '../../../functions/FileAction/sharePDF'
+import FlashMsg from '../../global/flash/FlashMsg'
 
-const ScoreCard = ({ 
-  item, 
-  index, 
-  token, 
-  setLoading, 
-  navigation 
+
+const ScoreCard = ({
+  item,
+  index,
+  token,
+  setLoading,
+  navigation
 }: {
   item: {
     semesterId: string
@@ -31,33 +34,33 @@ const ScoreCard = ({
     try {
       setDownloading(true);
       setLoading(true);
-      
+
       const pdfData = await ExamScoreDownloadApi({
         token: token,
         id: item,
-        setData: () => {}, // We don't need to set data for display
+        setData: () => { },
         setloading: setLoading
       });
 
       if (!pdfData) {
         throw new Error('No PDF data received');
       }
-
-      // Generate file name
       const fileName = `ScoreCard_Sem${item.semesterName}_${item.dataList[0]?.sessionName || 'Session'}`;
-      
-      // Show download options
+
       Alert.alert(
         'Download Score Card',
         'Choose an option:',
         [
           {
             text: 'Download PDF',
-            onPress: () => PDFDownloader.downloadPDF(pdfData, fileName)
+            onPress: () => downloadPDF(pdfData, fileName)
+
+
           },
           {
             text: 'Share PDF',
-            onPress: () => PDFDownloader.sharePDF(pdfData, fileName)
+            onPress: () => sharePDF(pdfData, fileName)
+
           },
           {
             text: 'Cancel',
@@ -67,8 +70,11 @@ const ScoreCard = ({
       );
 
     } catch (error) {
-      console.error('Download failed:', error);
-      Alert.alert('Error', 'Failed to download score card. Please try again.');
+      FlashMsg({
+        message: 'Error',
+        description: 'Failed to download PDF file. Please try again.',
+        type: 'danger',
+      });
     } finally {
       setDownloading(false);
       setLoading(false);
