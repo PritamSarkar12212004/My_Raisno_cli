@@ -74,7 +74,7 @@ const MainInfoCard = ({
                 activeOpacity={0.9}
                 className='rounded-3xl relative overflow-hidden'
                 style={{
-                    width: screenWidth * 0.44,
+                    width: screenWidth * 0.45,
                     aspectRatio: 1,
                     backgroundColor: 'rgba(24, 24, 27, 0.95)',
                 }}

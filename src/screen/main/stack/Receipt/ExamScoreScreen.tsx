@@ -51,7 +51,7 @@ const ExamScoreScreen = () => {
             status={loading.status}
             func={func}
             loading={loading}
-          /> : <View className='flex-1'>
+          /> : <View className='flex-1 relative'>
             {
               data?.map((item, index) => {
                 return <ScoreCard key={index} item={item} index={index} token={univarsalTokenData?.Token} setLoading={setModalProvider} navigation={navigation} />
