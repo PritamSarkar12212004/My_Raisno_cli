@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, Alert, Modal, Animated, PanResponder } from 'react-native'
 import React, { useRef, useState } from 'react'
 import Icon from '../../global/icon/Icon'
-import ExamScoreDownloadApi from '../../../functions/api/main/ExamScoreDownloadApi'
 import downloadPDF from '../../../functions/FileAction/downloadPDF'
 import sharePDF from '../../../functions/FileAction/sharePDF'
 import FlashMsg from '../../global/flash/FlashMsg'
+import ExamScoreDownloadApi from '../../../functions/api/main/scroe/ExamScoreDownloadApi'
 
 
 const ScoreCard = ({

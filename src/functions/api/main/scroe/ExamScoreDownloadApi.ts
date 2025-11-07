@@ -1,5 +1,6 @@
-import ApiPath from '../../../constants/api/ApiPath';
-import Api from '../../../utils/api/Api';
+import ApiPath from "../../../../constants/api/ApiPath";
+import Api from "../../../../utils/api/Api";
+
 
 const ExamScoreDownloadApi = async ({
   token,

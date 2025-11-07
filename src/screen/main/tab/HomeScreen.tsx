@@ -37,7 +37,9 @@ const MainScreen = () => {
                                     <MainInfoCard title='Exam' color='#799EFF' disc='download exam score card' subTitle='Score Card ' func={() => navigation.navigate("stack", {
                                         screen: RoutesConst.STACK_SCREEN.EXAM_SCORE,
                                     })} />
-                                    <MainInfoCard title='Fainance' color='#799EFF' disc='download fainance receipt' func={() => { }} subTitle='Fainance Receipt' />
+                                    <MainInfoCard title='Fainance' color='#799EFF' disc='download fainance receipt' func={() => navigation.navigate("stack", {
+                                        screen: RoutesConst.STACK_SCREEN.FAINANCE_RECEIPT,
+                                    })} subTitle='Fainance Receipt' />
                                 </View>
                             </View>
                             <View className='flex gap-2'>
@@ -46,7 +48,7 @@ const MainScreen = () => {
                                 </Text>
                                 <View className='flex w-full  flex-row  items-center justify-between '>
                                     <MainInfoCard title='Exam' color='#799EFF' disc='download exam score card' subTitle='Score Card ' func={() => navigation.navigate("stack", {
-                                        screen: RoutesConst.STACK_SCREEN.EXAM_SCORE,
+                                        screen: RoutesConst.STACK_SCREEN.FAINANCE_RECEIPT,
                                     })} />
                                     <MainInfoCard title='Fainance' color='#799EFF' disc='download fainance receipt' func={() => { }} subTitle='Fainance Receipt' />
                                 </View>

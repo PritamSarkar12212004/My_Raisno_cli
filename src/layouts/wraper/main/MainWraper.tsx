@@ -2,8 +2,8 @@ import { ScrollView, View } from 'react-native'
 import React, { useEffect } from 'react'
 import ColorConst from '../../../constants/color/ColorConst'
 import { userContext } from '../../../utils/provider/ContextProvider'
-import MainDataFetcher from '../../../functions/api/main/MainDataFetcher'
 import DataLoading from '../../../components/main/Loading/DataLoading'
+import MainDataFetcher from '../../../functions/api/main/main/MainDataFetcher'
 
 export default function MainWraper({ children }: any) {
     const { userData, setUserDta, setDataLoading, dataLoading,setUnivarsalTokenData } = userContext()

@@ -1,7 +1,8 @@
-import StorageToken from '../../../constants/token/StorageToken';
-import readStorage from '../../helper/storage/readStorage';
-import DataGeter from './exeutor/DataGeter';
-import TokenGeter from './exeutor/TokenGeter';
+import StorageToken from "../../../../constants/token/StorageToken";
+import readStorage from "../../../helper/storage/readStorage";
+import DataGeter from "../exeutor/DataGeter";
+import TokenGeter from "../exeutor/TokenGeter";
+
 
 const MainDataFetcher = async ({
   setUserDta,

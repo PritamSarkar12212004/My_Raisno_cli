@@ -4,9 +4,9 @@ import SubWraper from '../../../layouts/wraper/main/SubWraper'
 import SubHeader from '../../../components/main/Header/SubHeader'
 import { useRoute } from '@react-navigation/native'
 import DataLoading from '../../../components/main/Loading/DataLoading'
-import AttendanceApi from '../../../functions/api/main/AttendanceApi'
 import { userContext } from '../../../utils/provider/ContextProvider'
 import AttendanceCard from '../../../components/main/cards/AttendanceCard'
+import AttendanceApi from '../../../functions/api/main/main/AttendanceApi'
 
 const AttendanceScreen = () => {
     const { params } = useRoute()

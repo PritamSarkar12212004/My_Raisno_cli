@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import SubHeader from '../../../../components/main/Header/SubHeader'
 import { userContext } from '../../../../utils/provider/ContextProvider'
-import CgpaDataApi from '../../../../functions/api/main/CgpaDataApi'
 import SubWraper from '../../../../layouts/wraper/main/SubWraper'
 import DataLoading from '../../../../components/main/Loading/DataLoading'
 import CgpaCard from '../../../../components/main/cards/CgpaCard'
+import CgpaDataApi from '../../../../functions/api/main/main/CgpaDataApi'
 
 const CgpaScreen = () => {
     const { params } = useRoute()

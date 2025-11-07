@@ -7,6 +7,10 @@ const ApiPath = {
       FETCH_CGPA: '/examScore',
       FETCH_EXAM_SCORE_DOX: '/download/examOne',
       DOWNLOAD_EXAM_SCORE_PDF: '/download/exam/maindownload',
+      FAINANCE: {
+        FETCH_FAINANCE: '/fees',
+        FETCH_FAINANCE_RECEIPT: '/download/fainanceOne',
+      },
     },
   },
 };
