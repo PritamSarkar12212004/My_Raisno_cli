@@ -42,17 +42,6 @@ const MainScreen = () => {
                                     })} subTitle='Fainance Receipt' />
                                 </View>
                             </View>
-                            <View className='flex gap-2'>
-                                <Text className='text-lg font-bold text-white'>
-                                    Academic Receipt
-                                </Text>
-                                <View className='flex w-full  flex-row  items-center justify-between '>
-                                    <MainInfoCard title='Exam' color='#799EFF' disc='download exam score card' subTitle='Score Card ' func={() => navigation.navigate("stack", {
-                                        screen: RoutesConst.STACK_SCREEN.FAINANCE_RECEIPT,
-                                    })} />
-                                    <MainInfoCard title='Fainance' color='#799EFF' disc='download fainance receipt' func={() => { }} subTitle='Fainance Receipt' />
-                                </View>
-                            </View>
                         </View>
                     </View>
                 </Fragment>

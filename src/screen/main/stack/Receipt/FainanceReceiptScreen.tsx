@@ -126,7 +126,6 @@ const FainanceReceiptScreen = () => {
         },
     ]
     const [tabData, setTabData] = useState(tabPath[0])
-    console.log(tabData)
     return (
         <SubWraper>
             <SubHeader path={"Fainance Receipt"} />
@@ -139,11 +138,7 @@ const FainanceReceiptScreen = () => {
                     /> : <View className='flex-1 '>
                         <View className='flex w-full mb-4'>
                             <View className='flex w-full flex-row items-center justify-between  '>
-                                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{
-                                    width: "100%",
-                                    display: "flex",
-                                    gap: 10
-                                }}>
+                                <ScrollView horizontal showsHorizontalScrollIndicator={false} >
                                     {
                                         tabPath.map((item: {
                                             id: number

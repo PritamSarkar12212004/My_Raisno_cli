@@ -10,6 +10,7 @@ const ApiPath = {
       FAINANCE: {
         FETCH_FAINANCE: '/fees',
         FETCH_FAINANCE_RECEIPT: '/download/fainanceOne',
+        DOWNLOAD_FAINANCE_PDF: '/download/fainace/maindownload',
       },
     },
   },
