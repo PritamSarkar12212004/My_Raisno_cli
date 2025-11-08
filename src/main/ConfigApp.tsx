@@ -6,6 +6,7 @@ import ColorConst from '../constants/color/ColorConst'
 import { ActivityIndicator, Modal, StatusBar, View } from 'react-native'
 import FlashMessage from 'react-native-flash-message'
 import FlashMsgUI from '../components/global/flash/FlashMsgUI'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const ConfigApp = () => {
 
@@ -24,16 +25,20 @@ const ConfigApp = () => {
                 animationDuration={250}
                 statusBarHeight={StatusBar.currentHeight}
             />
-            <RootWraper >
-                <Modal className='flex-1' transparent animationType='fade' visible={modalProvider} >
-                    <View className='flex-1 bg-black/50 blur-2xl  flex items-center justify-center '>
-                        <View className='p-3 bg-zinc-800/90 rounded-full'>
-                            <ActivityIndicator color={"white"} size={"large"} />
+            <GestureHandlerRootView style={{
+                flex: 1
+            }}>
+                <RootWraper >
+                    <Modal className='flex-1' transparent animationType='fade' visible={modalProvider} >
+                        <View className='flex-1 bg-black/50 blur-2xl  flex items-center justify-center '>
+                            <View className='p-3 bg-zinc-800/90 rounded-full'>
+                                <ActivityIndicator color={"white"} size={"large"} />
+                            </View>
                         </View>
-                    </View>
-                </Modal>
-                <HelperRoute />
-            </RootWraper>
+                    </Modal>
+                    <HelperRoute />
+                </RootWraper>
+            </GestureHandlerRootView>
         </Fragment>
     )
 }

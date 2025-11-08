@@ -3,7 +3,11 @@ import React from 'react'
 import AnimationLotti from '../../global/Animation/AnimationLotti'
 import AnimationConst from '../../../constants/animation/AnimationConst'
 
-const DataLoading = ({ status, func, loading }: any) => {
+const DataLoading = ({ status, func, loading }: {
+    status: any,
+    func: any,
+    loading: any
+}) => {
     return (
         <View className='flex-1  flex items-center justify-center px-6'>
             <View className='items-center justify-center mb-8'>

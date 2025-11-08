@@ -1,45 +1,39 @@
-import { ScrollView, View } from 'react-native'
+import { View } from 'react-native'
 import React, { useEffect } from 'react'
 import ColorConst from '../../../constants/color/ColorConst'
 import { userContext } from '../../../utils/provider/ContextProvider'
-import DataLoading from '../../../components/main/Loading/DataLoading'
 import MainDataFetcher from '../../../functions/api/main/main/MainDataFetcher'
 
 export default function MainWraper({ children }: any) {
-    const { userData, setUserDta, setDataLoading, dataLoading,setUnivarsalTokenData } = userContext()
-
-    const func = () => {
-        setDataLoading(true)
-    }
+    const {
+        userData,
+        setUserDta,
+        setDataLoading,
+        dataLoading,
+        setUnivarsalTokenData,
+        setAppReady,
+    } = userContext()
 
     useEffect(() => {
-        if (userData == null) {
+        if (!userData) {
             MainDataFetcher({
                 setUserDta,
                 setDataLoading,
-                setUnivarsalTokenData
+                setUnivarsalTokenData,
             })
         }
     }, [])
 
-    const isReady = userData !== null && !dataLoading.loading
+    useEffect(() => {
+        setAppReady(userData !== null && !dataLoading.loading)
+    }, [userData, dataLoading.loading])
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: ColorConst.ROOT_COLOR, flex: 1 }}
+        <View
+            style={{ backgroundColor: ColorConst.ROOT_COLOR, flex: 1 }}
+            className="flex-1 pt-4 px-4"
         >
-            <View
-                className='flex-1 pt-4 px-4'
-            >
-                {!isReady ? (
-                    <DataLoading
-                        status={dataLoading.status}
-                        func={func}
-                        loading={dataLoading}
-                    />
-                ) : (
-                    children
-                )}
-            </View>
-        </ScrollView>
+            {children}
+        </View>
     )
 }

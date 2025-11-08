@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { createContext, useContext, useRef, useState } from "react";
 
 interface ContextinterFace {
     reloader: {
@@ -11,7 +12,7 @@ interface ContextinterFace {
     setReloader: any,
     initialRoute: string | null | any,
     setInitialRoute: any,
-    univarsalTokenData: null | any| {
+    univarsalTokenData: null | any | {
         Token: null,
         Id: null
     }
@@ -34,13 +35,19 @@ interface ContextinterFace {
         loading: boolean,
         status: boolean
     },
-    setDataLoading: any
+    setDataLoading: any,
+    appReady: boolean,
+    setAppReady: any,
+    bottomSheetRef: any
 }
 
 const Context = createContext<ContextinterFace | undefined>(undefined);
 
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     // root hooks
+    const bottomSheetRef = useRef<BottomSheet>(null);
+
+    const [appReady, setAppReady] = useState<boolean>(false)
     const [reloader, setReloader] = useState({
         fullPageReloader: false,
         mainPageReloader: false,
@@ -90,7 +97,10 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
                 modalProvider,
                 setModalProvider,
                 dataLoading,
-                setDataLoading
+                setDataLoading,
+                appReady,
+                setAppReady,
+                bottomSheetRef
 
             }}
         >
