@@ -38,14 +38,12 @@ interface ContextinterFace {
     setDataLoading: any,
     appReady: boolean,
     setAppReady: any,
-    bottomSheetRef: any
 }
 
 const Context = createContext<ContextinterFace | undefined>(undefined);
 
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     // root hooks
-    const bottomSheetRef = useRef<BottomSheet>(null);
 
     const [appReady, setAppReady] = useState<boolean>(false)
     const [reloader, setReloader] = useState({
@@ -100,7 +98,6 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
                 setDataLoading,
                 appReady,
                 setAppReady,
-                bottomSheetRef
 
             }}
         >

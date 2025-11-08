@@ -1,34 +1,25 @@
-import React, { useMemo } from 'react';
-import { BottomSheetView } from '@gorhom/bottom-sheet';
-import BottomSheet from '@gorhom/bottom-sheet';
-import { userContext } from '../../utils/provider/ContextProvider';
+import { View, Text, Modal } from 'react-native'
+import React from 'react'
 
-const BottomShet = ({
-  func1,
-  func2,
-  children
-}: {
-  func1: any;
-  func2: any;
+const BottomShet = ({ status, children }: {
+  status: boolean,
   children: any
 }) => {
-  const { bottomSheetRef } = userContext();
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
-
   return (
-    <BottomSheet
-      ref={bottomSheetRef}
-      index={-1}
-      snapPoints={snapPoints}
-      enablePanDownToClose={true}
-    >
-      <BottomSheetView style={{ flex: 1 }}>
+    <Modal visible={status} style={
+      {
+        flex: 1,
+        height: "100%",
+        width: "100%"
+      }
+    } transparent animationType='slide' >
+      <View className='flex-1  flex items-center justify-end'>
         {
           children
         }
-      </BottomSheetView>
-    </BottomSheet>
-  );
-};
+      </View>
+    </Modal>
+  )
+}
 
-export default BottomShet;
+export default BottomShet

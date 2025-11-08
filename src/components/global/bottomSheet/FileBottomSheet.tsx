@@ -38,51 +38,45 @@ const FileBottomSheet = ({
     handleSharePDF: any
 }) => {
     return (
-        <View className="flex-1 justify-end">
+        <View className="flex-1 justify-end bg">
+            <View className='bg-zinc-800 px-3 pt-3 rounded-t-[30px]'>
 
-            <TouchableOpacity
-                className="flex-1"
-                onPress={closeActionSheet}
-                activeOpacity={1}
-            />
-
-            <View className="items-center mb-2">
-                <View className="w-12 h-1 bg-gray-500 rounded-full" />
-            </View>
-            <View className="items-center mb-6">
-                <View className="w-14 h-14 bg-blue-500/20 rounded-2xl justify-center items-center mb-3">
-                    <Icon name="file" size={28} color="#3B82F6" />
+                <View className="items-center mb-6">
+                    <View className="w-14 h-14 bg-blue-500/20 rounded-2xl justify-center items-center mb-3">
+                        <Icon name="file" size={28} color="#3B82F6" />
+                    </View>
+                    <Text className="text-white text-xl font-bold text-center">
+                        Download Score Card
+                    </Text>
+                    <Text className="text-gray-400 text-center mt-2">
+                        Choose how you want to save your score card
+                    </Text>
                 </View>
-                <Text className="text-white text-xl font-bold text-center">
-                    Download Score Card
-                </Text>
-                <Text className="text-gray-400 text-center mt-2">
-                    Choose how you want to save your score card
-                </Text>
-            </View>
-            <ActionButton
-                icon="download"
-                title="Download PDF"
-                subtitle="Save to your device"
-                onPress={handleDownloadPDF}
-                color="#3B82F6"
-            />
-            <ActionButton
-                icon="share"
-                title="Share PDF"
-                subtitle="Share with others directly"
-                onPress={handleSharePDF}
-                color="#10B981"
-            />
-            <TouchableOpacity
-                onPress={closeActionSheet}
-                className="flex-row items-center justify-center p-4 rounded-2xl mt-2 border border-gray-600 active:opacity-80"
-                activeOpacity={0.7}
-            >
-                <Text className="text-gray-300 font-semibold text-base">Cancel</Text>
-            </TouchableOpacity>
-            <View className="h-4" />
-        </View >
+                <ActionButton
+                    icon="download"
+                    title="Download PDF"
+                    subtitle="Save to your device"
+                    onPress={handleDownloadPDF}
+                    color="#3B82F6"
+                />
+                <ActionButton
+                    icon="share"
+                    title="Share PDF"
+                    subtitle="Share with others directly"
+                    onPress={handleSharePDF}
+                    color="#10B981"
+                />
+                <TouchableOpacity
+                    onPress={closeActionSheet}
+                    className="flex-row items-center justify-center p-4 rounded-2xl mt-2 border border-gray-600 active:opacity-80"
+                    activeOpacity={0.7}
+                >
+                    <Text className="text-gray-300 font-semibold text-base">Cancel</Text>
+                </TouchableOpacity>
+                <View className="h-4" />
+            </View >
+        </View>
+
     )
 }
 
