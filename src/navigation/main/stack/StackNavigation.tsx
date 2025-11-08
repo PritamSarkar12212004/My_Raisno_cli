@@ -5,8 +5,9 @@ import AttendanceScreen from '../../../screen/main/stack/AttendanceScreen';
 import CgpaScreen from '../../../screen/main/stack/cgpa/CgpaScreen';
 import CgpaDetailScreen from '../../../screen/main/stack/cgpa/CgpaDetailScreen';
 import ExamScoreScreen from '../../../screen/main/stack/Receipt/ExamScoreScreen';
-import FainanceStatementScreem from '../../../screen/main/stack/Receipt/FainanceStatementScreem';
 import FainanceReceiptScreen from '../../../screen/main/stack/Receipt/FainanceReceiptScreen';
+import PhoneNumberLink from '../../../screen/main/stack/Link/PhoneNumberLink';
+import OtpBarifyScreen from '../../../screen/main/stack/Link/OtpBarifyScreen';
 const Stack = createNativeStackNavigator()
 
 const StackNavigation = () => {
@@ -30,6 +31,12 @@ const StackNavigation = () => {
             <Stack.Screen name={RoutesConst.STACK_SCREEN.FAINANCE_RECEIPT} options={{
                 animation: "ios_from_right"
             }} component={FainanceReceiptScreen} />
+            <Stack.Screen name={RoutesConst.STACK_SCREEN.PHONE_NUMBER_LINK} options={{
+                animation: "ios_from_right"
+            }} component={PhoneNumberLink} />
+            <Stack.Screen name={RoutesConst.STACK_SCREEN.PHONE_NUMBER_VARIFY_OTP} options={{
+                animation: "ios_from_right"
+            }} component={OtpBarifyScreen} />
 
         </Stack.Navigator>
     )

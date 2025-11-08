@@ -13,7 +13,7 @@ const BottomShet = ({ status, children }: {
         width: "100%"
       }
     } transparent animationType='slide' >
-      <View className='flex-1  flex items-center justify-end'>
+      <View className='flex-1'>
         {
           children
         }

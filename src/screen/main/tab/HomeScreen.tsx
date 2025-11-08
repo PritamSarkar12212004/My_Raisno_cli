@@ -21,7 +21,6 @@ const MainScreen = () => {
     return (
         <MainWraper>
             <ScrollView showsVerticalScrollIndicator={false}>
-
                 {
                     appReady ? (
                         <Fragment>
