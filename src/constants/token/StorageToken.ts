@@ -9,5 +9,8 @@ const StorageToken = {
     DATA: 'MainData',
     USER_DATA: 'UserData',
   },
+  PHONE_NUMBER: {
+    LINK_PHONE: 'link_Phone',
+  },
 };
 export default StorageToken;

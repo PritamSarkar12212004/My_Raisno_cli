@@ -20,8 +20,8 @@ import CallOtp from '../../../../functions/api/link/CallOtp';
 
 const PhoneNumberLink = () => {
     const { modalProvider, setModalProvider } = userContext()
-    const [formData, setFormData] = useState({ phone: '' });
-    const navigation = useNavigation();
+    const [formData, setFormData] = useState('');
+    const navigation = useNavigation<any>();
     const handleInputChange = (value: string) => {
         let cleaned = value.replace(/[^0-9]/g, '');
         if (cleaned.startsWith('0')) {
@@ -30,10 +30,10 @@ const PhoneNumberLink = () => {
         if (cleaned.length > 10) {
             cleaned = cleaned.substring(0, 10);
         }
-        setFormData({ phone: cleaned });
+        setFormData(cleaned);
     };
     const handleLogin = () => {
-        if (!formData.phone.trim()) {
+        if (!formData) {
             FlashMsg({
                 message: 'Missing Field',
                 description: 'Please enter your phone number.',
@@ -42,7 +42,7 @@ const PhoneNumberLink = () => {
             return;
         }
 
-        if (formData.phone.length !== 10) {
+        if (formData.length !== 10) {
             FlashMsg({
                 message: 'Invalid Number',
                 description: 'Phone number must be exactly 10 digits.',
@@ -53,9 +53,9 @@ const PhoneNumberLink = () => {
         setModalProvider(true);
         CallOtp({
             phone: formData,
-            setModalProvider: setModalProvider
+            setModalProvider: setModalProvider,
+            navigation: navigation
         })
-        navigation.navigate("stack", RoutesConst.STACK_SCREEN.PHONE_NUMBER_VARIFY_OTP);
     };
 
     return (
@@ -93,7 +93,7 @@ const PhoneNumberLink = () => {
                                     placeholder="Enter your phone number"
                                     placeholderTextColor="#6B7280"
                                     keyboardType="phone-pad"
-                                    value={formData.phone}
+                                    value={formData}
                                     onChangeText={handleInputChange}
                                     maxLength={10}
                                 />

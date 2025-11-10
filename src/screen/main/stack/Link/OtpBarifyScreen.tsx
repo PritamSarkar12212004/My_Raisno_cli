@@ -2,7 +2,6 @@ import {
     View,
     Text,
     TouchableOpacity,
-    ActivityIndicator,
     KeyboardAvoidingView,
     ScrollView,
     Platform,
@@ -15,17 +14,20 @@ import SubWraper from '../../../../layouts/wraper/main/SubWraper';
 import SubHeader from '../../../../components/main/Header/SubHeader';
 import ColorConst from '../../../../constants/color/ColorConst';
 import FlashMsg from '../../../../components/global/flash/FlashMsg';
-import RoutesConst from '../../../../constants/routes/RoutesConst';
+import { userContext } from '../../../../utils/provider/ContextProvider';
+import writeStorage from '../../../../functions/helper/storage/writeStorage';
+import StorageToken from '../../../../constants/token/StorageToken';
 
 const OtpBarifyScreen = () => {
-    const [otp, setOtp] = useState('');
-    const [loading, setLoading] = useState(false);
-    const navigation = useNavigation();
+    const { modalProvider, setModalProvider } = userContext()
+    const [enteredOtp, setEnteredOtp] = useState('');
+    const navigation = useNavigation<any>();
     const route = useRoute();
-    const phone = route?.params?.phone || '';
 
-    const handleVerify = () => {
-        if (otp.trim().length < 4) {
+    const otpFromServer = route?.params?.otp;
+
+    const handleVerify = async () => {
+        if (enteredOtp.trim().length < 4) {
             FlashMsg({
                 message: 'Invalid OTP',
                 description: 'Please enter a valid 4-digit OTP.',
@@ -33,27 +35,35 @@ const OtpBarifyScreen = () => {
             });
             return;
         }
-
-        setLoading(true);
+        if (enteredOtp !== String(otpFromServer)) {
+            FlashMsg({
+                message: 'OTP Mismatch',
+                description: 'Entered OTP is incorrect. Please try again.',
+                type: 'danger',
+            });
+            return;
+        }
+        setModalProvider(true);
+        const func = async () => {
+            await writeStorage({
+                key: StorageToken.PHONE_NUMBER.LINK_PHONE,
+                value: true
+            })
+            return true
+        }
+        await func()
         setTimeout(() => {
-            setLoading(false);
+            setModalProvider(false);
             FlashMsg({
                 message: 'OTP Verified',
-                description: `Welcome! Phone number ${phone || ''} verified successfully.`,
+                description: 'Your number has been successfully verified!',
                 type: 'success',
             });
-            navigation.navigate(RoutesConst.MAIN_ROUTE.DASHBOARD);
-        }, 1500);
+            navigation.navigate("main", {
+                screen: "ProfileScreen",
+            })
+        }, 1200);
     };
-
-    const handleResend = () => {
-        FlashMsg({
-            message: 'OTP Resent',
-            description: `A new OTP has been sent to ${phone || 'your phone'}.`,
-            type: 'info',
-        });
-    };
-
     return (
         <SubWraper>
             <SubHeader path="Verify OTP" />
@@ -71,14 +81,10 @@ const OtpBarifyScreen = () => {
                                     <Text className="text-2xl font-bold text-white">OTP</Text>
                                 </View>
                                 <Text className="text-3xl font-bold text-white mb-3 text-center">
-                                    Verify Your Number
+                                    Verify Your OTP
                                 </Text>
                                 <Text className="text-base text-gray-400 text-center leading-7">
-                                    Enter the 4-digit OTP sent to{' '}
-                                    <Text className="text-blue-400 font-semibold">
-                                        {phone || 'your phone'}
-                                    </Text>
-                                    .
+                                    Please enter the 4-digit OTP you received.
                                 </Text>
                             </View>
                             <View className="bg-zinc-900/90 rounded-3xl px-4 pt-6 pb-8 mb-9 shadow-xl shadow-black/10">
@@ -86,47 +92,31 @@ const OtpBarifyScreen = () => {
                                     Enter OTP
                                 </Text>
                                 <TextInput
-                                    className="w-full h-14 bg-zinc-900/60 rounded-2xl px-6 text-white text-lg border-2 border-zinc-700/50 focus:border-blue-500 text-center tracking-widest"
+                                    className="w-full h-14 bg-zinc-900/60 rounded-2xl px-6 text-white text-lg border-2 border-zinc-700/50 text-center tracking-widest"
                                     placeholder="____"
                                     placeholderTextColor="#6B7280"
                                     keyboardType="numeric"
-                                    value={otp}
-                                    onChangeText={setOtp}
+                                    value={enteredOtp}
+                                    onChangeText={setEnteredOtp}
                                     maxLength={4}
+                                    cursorColor="transparent"
                                 />
+
                             </View>
-
-                            {/* Verify Button */}
                             <TouchableOpacity
-                                className="w-full h-14 mt-4 bg-zinc-900/90 flex items-center justify-center rounded-full"
-                                onPress={() => (loading ? null : handleVerify())}>
-                                {loading ? (
-                                    <ActivityIndicator size="small" color="gray" />
-                                ) : (
-                                    <Text className="text-white font-bold text-xl">Verify OTP</Text>
-                                )}
-                            </TouchableOpacity>
-
-                            {/* Resend OTP */}
-                            <TouchableOpacity onPress={handleResend} className="mt-6">
-                                <Text className="text-blue-400 text-center text-base font-medium">
-                                    Resend OTP
-                                </Text>
-                            </TouchableOpacity>
-
-                            {/* Back */}
-                            <TouchableOpacity
-                                onPress={() => navigation.goBack()}
-                                className="mt-4">
-                                <Text className="text-gray-400 text-center text-base">
-                                    ← Back to Phone Login
+                                onPress={handleVerify}
+                                disabled={modalProvider}
+                                className='w-full h-14 bg-zinc-900/90 flex items-center justify-center rounded-2xl'
+                            >
+                                <Text className="text-white text-lg font-semibold">
+                                    Verify OTP
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </SafeAreaView>
-        </SubWraper>
+        </SubWraper >
     );
 };
 
