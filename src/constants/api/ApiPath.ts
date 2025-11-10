@@ -1,6 +1,9 @@
 const ApiPath = {
   GHRUA: {
     AUTH_LOGIN_PATH: 'https://ghrua.cybervidya.net/api/auth/login',
+    AUTH_API: {
+      FETH_PHONE_DATA_PATH: '/phone/link-Phone-fetch_data',
+    },
     OTP: {
       MIN_OTP: '/otp/myRaisoni',
     },

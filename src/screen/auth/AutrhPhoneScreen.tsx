@@ -12,50 +12,54 @@ import {
 import React, { useState } from 'react'
 import ColorConst from '../../constants/color/ColorConst'
 import { useNavigation } from '@react-navigation/native'
+import FlashMsg from '../../components/global/flash/FlashMsg'
+import { userContext } from '../../utils/provider/ContextProvider'
+import CallOtpAuth from '../../functions/api/auth/CallOtpAuth'
 
 const { width, height } = Dimensions.get('window')
 
 const AuthScreen = () => {
+    const { setModalProvider } = userContext()
     const navigation = useNavigation()
-    const [formData, setFormData] = useState({
-        phone: '',
-    })
+    const [formData, setFormData] = useState('');
 
-    const handleInputChange = (field: string, value: string) => {
-        if (field === 'phone') {
-            // Remove any non-numeric characters
-            let cleaned = value.replace(/[^0-9]/g, '');
 
-            // Limit to 10 digits
-            if (cleaned.length > 10) {
-                cleaned = cleaned.slice(0, 10);
-            }
-
-            // Optional: Prevent numbers starting with 0
-            if (cleaned.startsWith('0')) {
-                cleaned = cleaned.replace(/^0+/, '');
-            }
-
-            setFormData((prev) => ({
-                ...prev,
-                [field]: cleaned,
-            }));
-        } else {
-            setFormData((prev) => ({
-                ...prev,
-                [field]: value,
-            }));
+    const handleInputChange = (value: string) => {
+        let cleaned = value.replace(/[^0-9]/g, '');
+        if (cleaned.startsWith('0')) {
+            cleaned = cleaned.substring(1);
         }
+        if (cleaned.length > 10) {
+            cleaned = cleaned.substring(0, 10);
+        }
+        setFormData(cleaned);
     };
 
-
     const handleLogin = () => {
-        if (!formData.phone) {
-            Alert.alert('Error', 'Please enter your phone number')
-            return
+        if (!formData) {
+            FlashMsg({
+                message: 'Missing Field',
+                description: 'Please enter your phone number.',
+                type: 'danger',
+            });
+            return;
         }
-        console.log('Phone Login:', formData.phone)
-    }
+
+        if (formData.length !== 10) {
+            FlashMsg({
+                message: 'Invalid Number',
+                description: 'Phone number must be exactly 10 digits.',
+                type: 'danger',
+            });
+            return;
+        }
+        setModalProvider(true);
+        CallOtpAuth({
+            phone: formData,
+            setModalProvider: setModalProvider,
+            navigation: navigation,
+        })
+    };
 
     return (
         <KeyboardAvoidingView
@@ -86,7 +90,7 @@ const AuthScreen = () => {
 
                     {/* Tabs (Back to Username Login) */}
                     <View className="flex-row items-center bg-zinc-800/60 rounded-3xl p-2 mb-8 shadow-lg shadow-black/20">
-                        <TouchableOpacity
+                        <TouchableOpacity activeOpacity={0.8}
                             className="flex-1 flex-row items-center justify-center py-4 rounded-2xl"
                             onPress={() => navigation.goBack()}
                         >
@@ -114,15 +118,15 @@ const AuthScreen = () => {
                                 className="w-full h-14 bg-zinc-900/60 rounded-2xl px-6 text-white text-lg border-2 border-zinc-700/50 focus:border-blue-500"
                                 placeholder="Enter your phone number"
                                 placeholderTextColor="#6B7280"
-                                value={formData.phone}
-                                onChangeText={(text) => handleInputChange('phone', text)}
+                                value={formData}
+                                onChangeText={(text) => handleInputChange(text)}
                                 keyboardType="phone-pad"
                             />
                         </View>
                     </View>
 
                     {/* Login Button */}
-                    <TouchableOpacity
+                    <TouchableOpacity activeOpacity={0.8}
                         className="w-full h-14 mt-4 bg-zinc-900/90 flex items-center justify-center rounded-full"
                         onPress={handleLogin}
                     >

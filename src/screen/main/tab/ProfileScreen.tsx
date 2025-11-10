@@ -8,9 +8,10 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import RoutesConst from '../../../constants/routes/RoutesConst'
 import readStorage from '../../../functions/helper/storage/readStorage'
 import StorageToken from '../../../constants/token/StorageToken'
+import LogutButton from '../../../components/main/button/LogutButton'
 
 const ProfileScreen = () => {
-  const navigation = useNavigation<any>()
+  const navigation = useNavigation()
   const { userData, appReady, dataLoading, setModalProvider, modalProvider } = userContext()
   const func = () => {
   }
@@ -225,6 +226,7 @@ const ProfileScreen = () => {
                 icon={<Icon name="users" size={18} color="orange" />}
               />
             </InfoCard>
+            <LogutButton setModalProvider={setModalProvider} navigation={navigation} />
           </View>
         </ScrollView>
       }

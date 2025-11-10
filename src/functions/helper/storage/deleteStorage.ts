@@ -1,6 +1,6 @@
 import { storage } from '../../../utils/storage/Storage';
 
-const deleteStorage = async ({ key }: any) => {
+const deleteStorage = async ({ key }: { key: any }) => {
   try {
     storage.remove(key);
     return true;

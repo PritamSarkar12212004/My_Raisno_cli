@@ -3,6 +3,7 @@ import React from 'react'
 import RoutesConst from '../../constants/routes/RoutesConst'
 import AuthScreen from '../../screen/auth/AuthScreen'
 import AutrhPhoneScreen from '../../screen/auth/AutrhPhoneScreen';
+import VarifyScreen from '../../screen/auth/VarifyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,9 @@ const AuthNavigation = () => {
                 animation: 'slide_from_right'
             }} />
             <Stack.Screen name={RoutesConst.AUTH_ROUTE.PHONE_SCREEN} component={AutrhPhoneScreen} options={{
+                animation: 'slide_from_right'
+            }} />
+            <Stack.Screen name={RoutesConst.AUTH_ROUTE.VARIFY_SCREEN} component={VarifyScreen} options={{
                 animation: 'slide_from_right'
             }} />
         </Stack.Navigator>

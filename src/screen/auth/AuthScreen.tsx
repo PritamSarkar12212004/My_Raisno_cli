@@ -88,7 +88,7 @@ const AuthScreen = () => {
                         </Text>
                     </View>
                     <View className="flex-row items-center bg-zinc-800/60 rounded-3xl p-2 mb-8 shadow-lg shadow-black/20">
-                        <TouchableOpacity
+                        <TouchableOpacity activeOpacity={0.8}
                             className={`flex-1 flex-row items-center justify-center py-4 rounded-2xl ${!isLoginWithPhone ? 'bg-white shadow-lg' : ''
                                 }`}
                             onPress={() => setIsLoginWithPhone(false)}
