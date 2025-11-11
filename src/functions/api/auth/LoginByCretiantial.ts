@@ -75,6 +75,17 @@ const LoginByCretiantial = async ({
               PassWord: password,
             },
           });
+          if (res.data.data.PhoneLinkData) {
+            writeStorage({
+              key: StorageToken.PHONE_NUMBER.LINK_PHONE,
+              value: true,
+            });
+          } else {
+            writeStorage({
+              key: StorageToken.PHONE_NUMBER.LINK_PHONE,
+              value: false,
+            });
+          }
           navigation.dispatch(
             CommonActions.reset({
               index: 0,

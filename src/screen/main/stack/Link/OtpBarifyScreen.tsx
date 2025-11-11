@@ -17,6 +17,8 @@ import FlashMsg from '../../../../components/global/flash/FlashMsg';
 import { userContext } from '../../../../utils/provider/ContextProvider';
 import writeStorage from '../../../../functions/helper/storage/writeStorage';
 import StorageToken from '../../../../constants/token/StorageToken';
+import LinkPhoneNumber from '../../../../functions/api/link/LinkPhoneNumber';
+import readStorage from '../../../../functions/helper/storage/readStorage';
 
 const OtpBarifyScreen = () => {
     const { modalProvider, setModalProvider } = userContext()
@@ -25,6 +27,7 @@ const OtpBarifyScreen = () => {
     const route = useRoute();
 
     const otpFromServer = route?.params?.otp;
+    const phone = route?.params?.phone;
 
     const handleVerify = async () => {
         if (enteredOtp.trim().length < 4) {
@@ -43,26 +46,20 @@ const OtpBarifyScreen = () => {
             });
             return;
         }
-        setModalProvider(true);
         const func = async () => {
-            await writeStorage({
-                key: StorageToken.PHONE_NUMBER.LINK_PHONE,
-                value: true
+            setModalProvider(true);
+            const mainData = await readStorage({ key: StorageToken.MAIN_TOKEN.USER_DATA });
+            const { UserName, PassWord } = await mainData
+            await LinkPhoneNumber({
+                phone: phone,
+                setModalProvider: setModalProvider,
+                password: PassWord,
+                userName: UserName,
+                navigation: navigation
             })
-            return true
         }
         await func()
-        setTimeout(() => {
-            setModalProvider(false);
-            FlashMsg({
-                message: 'OTP Verified',
-                description: 'Your number has been successfully verified!',
-                type: 'success',
-            });
-            navigation.navigate("main", {
-                screen: "ProfileScreen",
-            })
-        }, 1200);
+
     };
     return (
         <SubWraper>

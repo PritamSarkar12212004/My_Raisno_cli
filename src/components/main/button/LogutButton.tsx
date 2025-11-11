@@ -16,7 +16,7 @@ const LogutButton = ({
             key: StorageToken.AUTH_TOKEN.DATA
         })
         await deleteStorage({
-            key: StorageToken.MAIN_TOKEN.DATA
+            key: StorageToken.MAIN_TOKEN.DATA 
         })
         await deleteStorage({
             key: StorageToken.MAIN_TOKEN.USER_DATA
@@ -31,7 +31,7 @@ const LogutButton = ({
         });
     }
     return (
-        <TouchableOpacity onPress={() => logoutFunc()} activeOpacity={0.8} className='w-full flex h-14 bg-red-500/90 rounded-3xl items-center justify-center'>
+        <TouchableOpacity onPress={() => logoutFunc()} activeOpacity={0.8} className='w-full flex h-14 bg-red-800/90 rounded-3xl items-center justify-center'>
             <Text className='text-lg font-semibold text-white'>LogutButton</Text>
         </TouchableOpacity>
     )

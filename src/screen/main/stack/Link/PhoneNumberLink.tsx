@@ -14,7 +14,6 @@ import SubWraper from '../../../../layouts/wraper/main/SubWraper';
 import SubHeader from '../../../../components/main/Header/SubHeader';
 import ColorConst from '../../../../constants/color/ColorConst';
 import FlashMsg from '../../../../components/global/flash/FlashMsg';
-import RoutesConst from '../../../../constants/routes/RoutesConst';
 import { userContext } from '../../../../utils/provider/ContextProvider';
 import CallOtp from '../../../../functions/api/link/CallOtp';
 

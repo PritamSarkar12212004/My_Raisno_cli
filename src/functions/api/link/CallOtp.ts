@@ -26,6 +26,7 @@ const CallOtp = async ({
         screen: RoutesConst.STACK_SCREEN.PHONE_NUMBER_VARIFY_OTP,
         params: {
           otp: res.data.otp,
+          phone: phone,
         },
       });
     })
