@@ -5,10 +5,11 @@ import {
     KeyboardAvoidingView,
     ScrollView,
     Platform,
+    ActivityIndicator,
 } from 'react-native';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
-import { useRoute } from '@react-navigation/native';
+import { CommonActions, useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { userContext } from '../../utils/provider/ContextProvider';
 import FlashMsg from '../../components/global/flash/FlashMsg';
@@ -18,10 +19,11 @@ import ColorConst from '../../constants/color/ColorConst';
 import Varifyotp from '../../functions/api/auth/Varifyotp';
 
 const VarifyScreen = () => {
-    const { modalProvider, setModalProvider } = userContext()
+    const { modalProvider, setModalProvider, setUnivarsalTokenData, setUserDta } = userContext()
+    const navigation = useNavigation()
     const [enteredOtp, setEnteredOtp] = useState('');
     const route = useRoute();
-
+    const [loadind, setLoading] = useState(false)
     const otpFromServer = route?.params?.otp;
     const phone = route?.params?.phone
     const handleVerify = async () => {
@@ -42,10 +44,15 @@ const VarifyScreen = () => {
             return;
         }
         const func = async () => {
-            setModalProvider(true);
+            setLoading(true)
             await Varifyotp({
                 phone: phone,
-                setModalProvider: setModalProvider
+                setModalProvider: setModalProvider,
+                setLoading: setLoading,
+                navigation: navigation,
+                CommonActions: CommonActions,
+                setUnivarsalTokenData: setUnivarsalTokenData,
+                setUserDta: setUserDta
             })
             return true
         }
@@ -92,12 +99,14 @@ const VarifyScreen = () => {
                             </View>
                             <TouchableOpacity
                                 onPress={handleVerify}
-                                disabled={modalProvider}
+                                disabled={modalProvider || loadind}
                                 className='w-full h-14 bg-zinc-900/90 flex items-center justify-center rounded-2xl'
                             >
-                                <Text className="text-white text-lg font-semibold">
-                                    Verify OTP
-                                </Text>
+                                {
+                                    loadind ? <ActivityIndicator size={"small"} color={"white"} /> : <Text className="text-white text-lg font-semibold">
+                                        Verify OTP
+                                    </Text>
+                                }
                             </TouchableOpacity>
                         </View>
                     </ScrollView>

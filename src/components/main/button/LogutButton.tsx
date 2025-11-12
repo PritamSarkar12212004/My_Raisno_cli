@@ -2,6 +2,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import StorageToken from '../../../constants/token/StorageToken'
 import deleteStorage from '../../../functions/helper/storage/deleteStorage'
+import { userContext } from '../../../utils/provider/ContextProvider'
 
 const LogutButton = ({
     setModalProvider,
@@ -10,13 +11,15 @@ const LogutButton = ({
     setModalProvider: any
     navigation: any
 }) => {
+
+    const { setInitialRoute, setUnivarsalTokenData, setUserDta, setAppReady } = userContext()
     const logoutFunc = async () => {
         setModalProvider(true)
         await deleteStorage({
             key: StorageToken.AUTH_TOKEN.DATA
         })
         await deleteStorage({
-            key: StorageToken.MAIN_TOKEN.DATA 
+            key: StorageToken.MAIN_TOKEN.DATA
         })
         await deleteStorage({
             key: StorageToken.MAIN_TOKEN.USER_DATA
@@ -24,6 +27,11 @@ const LogutButton = ({
         await deleteStorage({
             key: StorageToken.PHONE_NUMBER.LINK_PHONE
         })
+        await setUnivarsalTokenData(null)
+        await setUnivarsalTokenData(null)
+        await setUserDta(null)
+        await setAppReady(null)
+        await setInitialRoute(null)
         setModalProvider(false)
         navigation.reset({
             index: 0,

@@ -13,7 +13,15 @@ const LoginByCretiantial = async ({
   mainLoader,
   navigation,
   CommonActions,
-}: any) => {
+}: {
+  formData: any;
+  setLoading: any;
+  setUserDta: any;
+  setUnivarsalTokenData: any;
+  mainLoader: any;
+  navigation: any;
+  CommonActions: any;
+}) => {
   try {
     const { password, username } = formData;
     if (!password || !username) {
@@ -33,6 +41,7 @@ const LoginByCretiantial = async ({
       mainLoader(true);
       await Api.post(ApiPath.GHRUA.MAIN_TOKEN.FETCH_MAINDATA_PATH, {
         data: data,
+        username: username,
       })
         .then(async res => {
           await setUserDta({
@@ -75,15 +84,10 @@ const LoginByCretiantial = async ({
               PassWord: password,
             },
           });
-          if (res.data.data.PhoneLinkData) {
+          if (res.data.data.PhoneLinkData == true) {
             writeStorage({
               key: StorageToken.PHONE_NUMBER.LINK_PHONE,
               value: true,
-            });
-          } else {
-            writeStorage({
-              key: StorageToken.PHONE_NUMBER.LINK_PHONE,
-              value: false,
             });
           }
           navigation.dispatch(
