@@ -21,6 +21,9 @@ const ApiPath = {
         FETCH_FAINANCE_RECEIPT: '/download/fainanceOne',
         DOWNLOAD_FAINANCE_PDF: '/download/fainace/maindownload',
       },
+      TIME_TABLE: {
+        MAIN_TIME_TABLE: '/timetable',
+      },
     },
   },
 };

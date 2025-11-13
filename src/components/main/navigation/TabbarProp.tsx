@@ -14,7 +14,7 @@ const TabbarProp = ({ state, navigation }: any) => {
     const routes = [
         { name: RoutesConst.MAIN_SCREEN.HOME, icon: 'home', label: 'Home' },
         { name: RoutesConst.MAIN_SCREEN.Analize, icon: 'id-card', label: 'I Card' },
-        { name: RoutesConst.MAIN_SCREEN.NOTIFICATION, icon: 'bell', label: 'Notification' },
+        { name: RoutesConst.MAIN_SCREEN.NOTIFICATION, icon: 'list-alt', label: 'Notification' },
         { name: RoutesConst.MAIN_SCREEN.PROFILE, icon: 'user', label: 'Profile' },
     ];
 

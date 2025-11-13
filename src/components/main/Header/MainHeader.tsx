@@ -1,7 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import Icon from "../../global/icon/Icon";
-
 const MainHeader = ({ profileImage, userDetails }: {
     profileImage: any,
     userDetails: any
@@ -37,26 +35,7 @@ const MainHeader = ({ profileImage, userDetails }: {
                     </Text>
                 </View>
             </TouchableOpacity>
-            <View className="flex-row items-center justify-center gap-3">
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => {
-                        null
-                    }}
-                    className="h-12 w-12 border-[2px] border-gray-400 rounded-full flex items-center justify-center"
-                >
-                    <Icon name="notifications-sharp" size={24} color="#FAFDFF" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => {
-                        null
-                    }}
-                    className="h-12 w-12 border-[2px] border-gray-400 rounded-full flex items-center justify-center"
-                >
-                    <Icon name="calendar" size={24} color="#FAFDFF" />
-                </TouchableOpacity>
-            </View>
+
         </View>
     );
 };
