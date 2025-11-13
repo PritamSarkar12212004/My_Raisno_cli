@@ -1,4 +1,82 @@
 {
-  "name": "My_Raisoni_cli",
-  "displayName": "My_Raisoni_cli"
+  "name": "MyRaisoni",
+  "displayName": "My Raisoni",
+  "expo": {
+    "name": "My Raisoni",
+    "slug": "myraisoni",
+    "version": "4.1.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/image/RaisnoLogo.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pritam_sarkar.MyRaisoni",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/image/RaisnoLogo.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.pritam_sarkar.MyRaisoni",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE"
+      ],
+      "compileSdkVersion": 35,
+      "targetSdkVersion": 35,
+      "buildToolsVersion": "33.0.2"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./src/assets/image/RaisnoLogo.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/image/RaisnoLogo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4de0dc0d-a1aa-4380-a0e3-0739f37ad7ae"
+      }
+    },
+    "owner": "pritam_sarkar",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4de0dc0d-a1aa-4380-a0e3-0739f37ad7ae"
+    }
+  }
 }

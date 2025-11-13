@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
 
     factory.startReactNative(
-      withModuleName: "My_Raisoni_cli",
+      withModuleName: "MyRaisoni",
       in: window,
       launchOptions: launchOptions
     )
