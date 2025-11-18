@@ -41,9 +41,6 @@ android {
 
     /**
      * Signing Configs
-     * Make sure to create your own keystore:
-     * keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
-     * Move it into android/app/ and update gradle.properties with passwords.
      */
     signingConfigs {
         debug {
@@ -53,12 +50,11 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
+            // Hardcoded credentials for Play Store
+            storeFile file('pritam_sarkar__myraisoni-keystore.bak.jks')  // Keystore file path
+            storePassword '9c3aef7824dfe0cc5ab83a1149a4533c'             // Keystore password
+            keyAlias '673678e3315bbcce233894ad08baf7f5'                  // Key alias
+            keyPassword '2f2ef3efe1d59e075e3afa264864d50e'               // Key password
         }
     }
 
@@ -67,7 +63,6 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            // Use your release key for Play Store builds
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled enableProguardInReleaseBuilds
