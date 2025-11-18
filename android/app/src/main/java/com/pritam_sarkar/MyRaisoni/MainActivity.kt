@@ -1,4 +1,4 @@
-package com.my_raisoni_cli
+package com.pritam_sarkar.MyRaisoni
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
